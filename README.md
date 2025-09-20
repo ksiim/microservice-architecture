@@ -32,7 +32,27 @@
 ### **Project**
 - id (guid, PK)
 - name (string)
+
 ### **User**
 - id (guid, PK)
 - username (string)
 - hashed_password (string)
+
+REST эндпоинты Task Service
+Base URL: /api/v1/tasks
+POST /tasks — создать задачу
+Request: { "title": "...", "description": "...", "project_id": "...", "priority": "HIGH" }
+Response: 201 Created { "id": "...", ... }
+
+GET /tasks/{task_id} — получить задачу по ID
+Response: { "id": "...", "title": "...", "status": "TODO", ... }
+
+GET /tasks?project_id=...&assignee_id=... — список задач с фильтрацией
+
+PATCH /tasks/{task_id} — обновить (частично: статус, приоритет, описание, исполнитель)
+Request: { "status": "IN_PROGRESS" }
+
+DELETE /tasks/{task_id} — удалить задачу
+
+POST /tasks/{task_id}/assign — назначить исполнителя
+Request: { "assignee_id": "..." }
