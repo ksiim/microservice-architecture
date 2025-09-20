@@ -38,7 +38,7 @@
 - username (string)
 - hashed_password (string)
 
-REST эндпоинты Task Service
+**REST эндпоинты Task Service**
 Base URL: /api/v1/tasks
 POST /tasks — создать задачу
 Request: { "title": "...", "description": "...", "project_id": "...", "priority": "HIGH" }
