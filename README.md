@@ -14,13 +14,13 @@
 - **Auth Service** — отвечает за регистрацию, вход, refresh токены, роли пользователей.
 - **User Service** — управление профилями пользователей.
 - **Project Service** — CRUD для проектов.
-- **[[Task Service]]** — CRUD для задач, привязка к проектам и пользователям.
+- **Task Service** — CRUD для задач, привязка к проектам и пользователям.
 - **Comment Service** — хранение комментариев к задачам.
 - **Notification Service** — уведомления (email, push, webhooks).
 
 ## Models
 ### **Task**
-- id (UUID, PK)
+- id (guid, PK)
 - project_id (FK → Project)
 - title (string)
 - description (text)
@@ -30,9 +30,9 @@
 - created_at (datetime)
 - updated_at (datetime)
 ### **Project**
-- id (UUID, PK)
+- id (guid, PK)
 - name (string)
 ### **User**
-- id (UUID, PK)
+- id (guid, PK)
 - username (string)
 - hashed_password (string)
