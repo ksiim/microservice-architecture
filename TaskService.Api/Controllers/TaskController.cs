@@ -1,21 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
-using TaskModel = CoreLib.Models.Task;
+using CoreLib.Models;
 using TaskService.Logic;
 
-namespace Api.Controllers
+namespace TaskService.Api.Controllers
 {
     [ApiController]
-    [Route("api/tasks")]
+    [Route("tasks")]
     public class TaskController : ControllerBase
     {
-        private readonly TaskService.Logic.TaskService _service;
-        public TaskController(TaskService.Logic.TaskService service)
+        private readonly TaskService _service;
+        public TaskController(TaskService service)
         {
             _service = service;
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] TaskModel task)
+        public IActionResult Create([FromBody] Task task)
         {
             _service.CreateTask(task);
             return Created($"/tasks/{task.Id}", task);
@@ -37,7 +37,7 @@ namespace Api.Controllers
         }
 
         [HttpPatch("{taskId}")]
-        public IActionResult Patch(string taskId, [FromBody] TaskModel patch)
+        public IActionResult Patch(string taskId, [FromBody] Task patch)
         {
             var task = _service.GetTask(taskId);
             if (task == null) return NotFound();

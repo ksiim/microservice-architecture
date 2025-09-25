@@ -2,15 +2,15 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-// Регистрация сервисов Swagger
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-// builder.Services.AddOpenApi();
+
+// DI для TaskService
+builder.Services.AddSingleton<TaskService.DAL.IProjectRepository, TaskService.DAL.InMemoryProjectRepository>();
+builder.Services.AddSingleton<TaskService.DAL.ITaskRepository>(sp =>
+    new TaskService.DAL.InMemoryTaskRepository(sp.GetRequiredService<TaskService.DAL.IProjectRepository>()));
+builder.Services.AddSingleton<TaskService.Logic.TaskService>();
+builder.Services.AddSingleton<TaskService.Logic.ProjectService>();
 
 var app = builder.Build();
 

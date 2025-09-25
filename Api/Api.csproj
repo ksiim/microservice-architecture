@@ -11,4 +11,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoreLib\CoreLib.csproj" />
+    <ProjectReference Include="..\TaskService.DAL\TaskService.DAL.csproj" />
+    <ProjectReference Include="..\TaskService.Logic\TaskService.Logic.csproj" />
+  </ItemGroup>
+
 </Project>
