@@ -42,7 +42,9 @@
 
 Base URL: /api/v1/tasks
 POST /tasks — создать задачу
+
 Request: { "title": "...", "description": "...", "project_id": "...", "priority": "HIGH" }
+
 Response: 201 Created { "id": "...", ... }
 
 GET /tasks/{task_id} — получить задачу по ID
