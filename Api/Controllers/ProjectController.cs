@@ -1,15 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CoreLib.Models;
-using TaskService.Logic;
 
-namespace TaskService.Api.Controllers
+namespace Api.Controllers
 {
     [ApiController]
     [Route("projects")]
     public class ProjectController : ControllerBase
     {
-        private readonly ProjectService _service;
-        public ProjectController(ProjectService service)
+        private readonly TaskService.Logic.ProjectService _service;
+        public ProjectController(TaskService.Logic.ProjectService service)
         {
             _service = service;
         }

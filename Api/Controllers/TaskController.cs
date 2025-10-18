@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using TaskModel = CoreLib.Models.Task;
 using TaskService.Logic;
 
@@ -18,7 +19,7 @@ namespace Api.Controllers
         public IActionResult Create([FromBody] TaskModel task)
         {
             _service.CreateTask(task);
-            return Created($"/tasks/{task.Id}", task);
+            return Created($"/api/tasks/{task.Id}", task);
         }
 
         [HttpGet("{taskId}")]
@@ -30,9 +31,9 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetList([FromQuery] string project_id, [FromQuery] string assignee_id)
+        public IActionResult GetList([FromQuery] string project_id)
         {
-            var tasks = _service.GetTasks(project_id, assignee_id);
+            var tasks = _service.GetTasks(project_id);
             return Ok(tasks);
         }
 
@@ -69,3 +70,4 @@ namespace Api.Controllers
         public string AssigneeId { get; set; }
     }
 }
+

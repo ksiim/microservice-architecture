@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using CoreLib.Models;
 using TaskService.Logic;
 
 namespace Api.Controllers

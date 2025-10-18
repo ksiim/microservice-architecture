@@ -30,9 +30,9 @@ namespace TaskService.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetList([FromQuery] string project_id, [FromQuery] string assignee_id)
+        public IActionResult GetList([FromQuery] string project_id)
         {
-            var tasks = _service.GetTasks(project_id, assignee_id);
+            var tasks = _service.GetTasks(project_id);
             return Ok(tasks);
         }
 

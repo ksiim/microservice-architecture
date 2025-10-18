@@ -15,6 +15,7 @@
     <ProjectReference Include="..\CoreLib\CoreLib.csproj" />
     <ProjectReference Include="..\TaskService.DAL\TaskService.DAL.csproj" />
     <ProjectReference Include="..\TaskService.Logic\TaskService.Logic.csproj" />
+    <ProjectReference Include="..\TaskService.Application\TaskService.Application.csproj" />
   </ItemGroup>
 
 </Project>
