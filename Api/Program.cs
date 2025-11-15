@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using MassTransit;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,6 +12,25 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+// MassTransit with in-memory transport and saga registrations
+builder.Services.AddMassTransit(x =>
+{
+    // Saga state machines
+    x.AddSagaStateMachine<Api.Sagas.CoordinatorStateMachine, Api.Sagas.CoordinatorState>()
+        .InMemoryRepository();
+    x.AddSagaStateMachine<Api.Sagas.OrchestratorStateMachine, Api.Sagas.OrchestratorState>()
+        .InMemoryRepository();
+
+    // Consumers for commands
+    x.AddConsumer<Api.Consumers.CreateProjectConsumer>();
+    x.AddConsumer<Api.Consumers.CreateTaskConsumer>();
+
+    x.UsingInMemory((context, cfg) =>
+    {
+        cfg.ConfigureEndpoints(context);
+    });
+});
 
 // DI для TaskService
 builder.Services.AddSingleton<TaskService.DAL.IProjectRepository, TaskService.DAL.InMemoryProjectRepository>();
